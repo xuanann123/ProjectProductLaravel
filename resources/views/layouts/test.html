@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Example</title>
+    <style>
+        /* CSS để ẩn và hiển thị */
+        .hidden {
+            display: none;
+        }
+
+        .block {
+            display: block;
+        }
+
+        /* CSS cho dropdown */
+        .dropdown-menu {
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 11rem;
+            z-index: 10;
+        }
+
+        .dropdown-menu.dark {
+            background-color: #374151;
+            /* dark:bg-gray-700 */
+        }
+
+        .dropdown-header {
+            padding: 1rem;
+            font-size: 0.875rem;
+            color: #1f2937;
+            /* text-gray-900 */
+        }
+
+        .dropdown-header.dark {
+            color: white;
+            /* dark:text-white */
+        }
+
+        .dropdown-header .truncate {
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .dropdown-item {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            color: #4b5563;
+            /* text-gray-700 */
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f3f4f6;
+            /* hover:bg-gray-100 */
+        }
+
+        .dropdown-item.dark {
+            color: #d1d5db;
+            /* dark:text-gray-200 */
+        }
+
+        .dropdown-item.dark:hover {
+            background-color: #4b5563;
+            /* dark:hover:bg-gray-600 */
+            color: white;
+            /* dark:hover:text-white */
+        }
+    </style>
+</head>
+
+<body>
+    <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start"
+        class="w-10 h-10 rounded-full cursor-pointer" src="https://via.placeholder.com/40" alt="User dropdown">
+
+    <!-- Dropdown menu -->
+    <div id="userDropdown" class="dropdown-menu hidden dark">
+        <div class="dropdown-header dark">
+            <div>Bonnie Green</div>
+            <div class="truncate">name@flowbite.com</div>
+        </div>
+        <ul class="py-2 text-sm" aria-labelledby="avatarButton">
+            <li>
+                <a href="#" class="dropdown-item dark">Dashboard</a>
+            </li>
+            <li>
+                <a href="#" class="dropdown-item dark">Settings</a>
+            </li>
+            <li>
+                <a href="#" class="dropdown-item dark">Earnings</a>
+            </li>
+        </ul>
+        <div class="py-1">
+            <a href="#" class="dropdown-item dark">Sign out</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('avatarButton').addEventListener('click', function () {
+            var dropdown = document.getElementById('userDropdown');
+            if (dropdown.classList.contains('hidden')) {
+                dropdown.classList.remove('hidden');
+                dropdown.classList.add('block');
+            } else {
+                dropdown.classList.remove('block');
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        // Close the dropdown if the user clicks outside of it
+        window.addEventListener('click', function (e) {
+            if (!document.getElementById('avatarButton').contains(e.target) && !document.getElementById('userDropdown').contains(e.target)) {
+                document.getElementById('userDropdown').classList.remove('block');
+                document.getElementById('userDropdown').classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>
